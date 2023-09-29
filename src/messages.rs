@@ -83,7 +83,6 @@ pub struct CompilerMessage {
 #[derive(serde::Deserialize, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "snake_case")]
 struct CompilerMessageSpan {
-	/// TODO
 	column_start: usize,
 	/// TODO
 	column_end:   usize,
