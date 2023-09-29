@@ -45,10 +45,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup | Install Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: ${{needs.determine-toolchain.outputs.toolchain}}
-          rustflags: ''
+          components: clippy,rustfmt
 
       - name: Run | `cargo check`
         run: cargo check --quiet --message-format=json | cargo run
@@ -76,4 +76,4 @@ jobs:
           toolchain: ${{needs.determine-toolchain.outputs.toolchain}}
 
       - name: Run | `cargo doc`
-        run: cargo doc --no-deps --message-format=json | cargo run
+        run: cargo doc --no-deps --message-format=json | cargo-action-fmt
