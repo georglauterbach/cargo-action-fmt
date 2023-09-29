@@ -22,7 +22,6 @@ jobs:
   general-checks:
     name: General Check
     runs-on: ubuntu-22.04
-    needs: determine-toolchain
     steps:
       - name: Setup | Install GitHub CI Annotations Formatter
         uses: olix0r/cargo-action-fmt/setup@v2
