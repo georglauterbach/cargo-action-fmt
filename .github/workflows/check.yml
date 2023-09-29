@@ -50,10 +50,10 @@ jobs:
           toolchain: ${{needs.determine-toolchain.outputs.toolchain}}
 
       - name: Run | `cargo check`
-        run: cargo check --quiet --message-format=json | cargo-action-fmt
+        run: cargo check --quiet --message-format=json | cargo run
 
       - name: Run | `cargo clippy`
-        run: cargo clippy --quiet --message-format=json | cargo-action-fmt
+        run: cargo clippy --quiet --message-format=json | cargo run
 
       - name: Run | `cargo fmt`
         run: cargo fmt --all --message-format=human -- --check
@@ -75,4 +75,4 @@ jobs:
           toolchain: ${{needs.determine-toolchain.outputs.toolchain}}
 
       - name: Run | `cargo doc`
-        run: cargo doc --no-deps --message-format=json | cargo-action-fmt
+        run: cargo doc --no-deps --message-format=json | cargo run
