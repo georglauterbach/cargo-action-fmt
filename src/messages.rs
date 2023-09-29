@@ -76,7 +76,6 @@ pub struct CompilerMessage {
 	/// TODO
 	code:     Option<serde_json::Value>,
 	level:    String,
-	/// TODO
 	spans:    Vec<CompilerMessageSpan>,
 }
 
