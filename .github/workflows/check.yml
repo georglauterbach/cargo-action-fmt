@@ -31,14 +31,15 @@ jobs:
 
       - name: Setup | Install Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
-        with:
-          rustflags: ''
+        env:
+          RUST_BACKTRACE: short
+          RUSTFLAGS: ''
 
       - name: Run | `cargo check`
-        run: cargo check --quiet --message-format=json | cargo run
+        run: cargo check --quiet --message-format=json | cargo-action-fmt
 
       - name: Run | `cargo clippy`
-        run: cargo clippy --quiet --message-format=json | cargo run
+        run: cargo clippy --quiet --message-format=json | cargo-action-fmt
 
       - name: Run | `cargo fmt`
         run: cargo fmt --all --message-format=human -- --check
