@@ -48,6 +48,7 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: ${{needs.determine-toolchain.outputs.toolchain}}
+          rustflags: ''
 
       - name: Run | `cargo check`
         run: cargo check --quiet --message-format=json | cargo run
