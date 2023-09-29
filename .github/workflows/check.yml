@@ -40,7 +40,7 @@ jobs:
         run: cargo check --quiet --message-format=json | cargo-action-fmt
 
       - name: Run | `cargo clippy`
-        run: cargo clippy --quiet --message-format=json | cargo-action-fmt
+        run: cargo clippy --quiet --message-format=json
 
       - name: Run | `cargo fmt`
         run: cargo fmt --all --message-format=human -- --check
