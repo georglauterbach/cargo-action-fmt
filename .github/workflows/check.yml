@@ -18,6 +18,10 @@ permissions:
   checks: write
   pull-requests: write
 
+env:
+  RUST_BACKTRACE: '0'
+  RUSTFLAGS: ''
+
 jobs:
   general-checks:
     name: General Check
@@ -31,9 +35,6 @@ jobs:
 
       - name: Setup | Install Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
-        env:
-          RUST_BACKTRACE: short
-          RUSTFLAGS: ''
 
       - name: Run | `cargo check`
         run: cargo check --quiet --message-format=json | cargo-action-fmt
