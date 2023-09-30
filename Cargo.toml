@@ -4,7 +4,7 @@
 
 [package]
 name = 'cargo-action-fmt'
-version = '0.1.1'
+version = '0.1.2'
 edition = '2021'
 
 authors = [
@@ -56,14 +56,14 @@ regex = '1.9.5'
 [profile.release]
 opt-level = 3
 codegen-units = 1
-lto = true
+lto = 'fat'
 
 incremental = false
 
 debug = false
 debug-assertions = false
 overflow-checks = false
-strip = "none"
+strip = "symbols"
 
 [profile.dev]
 opt-level = 0
@@ -79,4 +79,3 @@ strip = false
 
 [profile.release.build-override]
 inherits = "release"
-
