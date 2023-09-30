@@ -44,17 +44,17 @@ mod messages;
 #[derive(clap::Parser, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[command(author, version, about, long_about = None)]
 pub struct Arguments {
-	/// When provided, read the messages from the file described by this path.
-	#[arg(short, long)]
-	pub path: Option<std::path::PathBuf>,
+  /// When provided, read the messages from the file described by this path.
+  #[arg(short, long)]
+  pub path: Option<std::path::PathBuf>,
 }
 
 fn main() -> anyhow::Result<()> {
-	let arguments = <Arguments as clap::Parser>::parse();
+  let arguments = <Arguments as clap::Parser>::parse();
 
-	for msg in messages::CargoMessage::read(arguments.path.as_ref())? {
-		msg.evaluate()?;
-	}
+  for msg in messages::CargoMessage::read(arguments.path.as_ref())? {
+    msg.evaluate()?;
+  }
 
-	Ok(())
+  Ok(())
 }
