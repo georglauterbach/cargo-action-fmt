@@ -38,7 +38,6 @@ default:
 
 # check Rust code (common errors, documentation, etc.)
 @check: fmt
-	{{ CARGO }} check
 	{{ CARGO }} clippy
 	{{ CARGO }} fmt --check --message-format human
 	{{ CARGO }} doc
