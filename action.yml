@@ -2,17 +2,6 @@ name: Setup cargo-action-fmt
 description: Convert the output of cargo check (and more) to the GitHub Actions comment format
 author: \@georglauterbach and \@olix0r
 
-inputs:
-  version:
-    description: The version of cargo-action-fmt to use
-    required: false
-    default: v0.1.0
-
-outputs:
-  bin:
-    description: The path to the cargo-action-fmt binary
-    value: ${{ steps.install.outputs.bin }}
-
 runs:
   using: composite
   steps:
@@ -23,10 +12,4 @@ runs:
         set -eE -u -o pipefail
         shopt -s inherit_errexit
 
-        DIR=$(mktemp -d "${RUNNER_TEMP}/caf.XXXXX")
-        URL="https://github.com/georglauterbach/cargo-action-fmt/releases/download/release%2F${{ inputs.version }}/cargo-action-fmt-${{ inputs.version }}-$(uname -m)-unknown-linux-musl.tar.gz"
-
-        curl --proto '=https' --tlsv1.3 -sSfL "${URL}" | tar zvxf - -C "${DIR}" cargo-action-fmt
-
-        echo bin="${DIR}/cargo-action-fmt" >>"${GITHUB_OUTPUT}"
-        echo PATH="${DIR}:${PATH}" >> "${GITHUB_ENV}"
+        curl --proto '=https' --tlsv1.3 -sSfL "https://github.com/georglauterbach/cargo-action-fmt/releases/download/release/v0.1.0/cargo-action-fmt-v0.1.0-$(uname -m)-unknown-linux-musl.tar.gz" | tar zvxf - -C /usr/local/bin/ cargo-action-fmt

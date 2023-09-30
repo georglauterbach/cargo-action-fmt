@@ -7,12 +7,12 @@ This action provides you with the ability to visualize issues in Rust code found
 This tool can be used with a variety of `cargo` commands:
 
 ```console
-$ cargo check
+$ cargo clippy
 error: missing documentation for a struct field
-  --> src/messages.rs:80:2
+  --> src/messages.rs:90:3
    |
-80 |     spans:    Vec<CompilerMessageSpan>,
-   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+90 |   spans:    Vec<CompilerMessageSpan>,
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |
    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#missing_docs_in_private_items
 note: the lint level is defined here
@@ -22,10 +22,7 @@ note: the lint level is defined here
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 $ cargo check -q --message-format=json | cargo-action-fmt
-::error file=src/messages.rs,line=80,endLine=80,col=2,endColumn=36::error: missing documentation for a struct field%0A  --> ...
-
-$ cargo clippy -q --message-format=json | cargo-action-fmt
-...
+::error file=src/messages.rs,line=90,endLine=90,col=3,endColumn=37::error: missing documentation for a struct field%0ASee https://rust-lang.github.io/rust-clippy/master/index.html#missing_docs_in_private_items%0A%0AThe lint level is defined in src/main.rs:26:9 by #![deny(clippy::missing_docs_in_private_items)]
 
 $ cargo doc --message-format=json | cargo-action-fmt
 ...
@@ -48,9 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     container: rust:slim
     steps:
-      - uses: georglauterbach/cargo-action-fmt/setup@v0.1.0
+      - uses: georglauterbach/cargo-action-fmt@v0.1.0
       - uses: actions/checkout@v4
       - run: cargo clippy -q --message-format=json | cargo-action-fmt
 ```
-
-![Example annotation](https://user-images.githubusercontent.com/240738/153767390-66f859d4-da3f-4e1e-846b-02605e8be628.png)
