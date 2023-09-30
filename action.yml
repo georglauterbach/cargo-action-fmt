@@ -2,6 +2,12 @@ name: Setup cargo-action-fmt
 description: Convert the output of cargo check (and more) to the GitHub Actions comment format
 author: \@georglauterbach and \@olix0r
 
+inputs:
+  version:
+    description: The version of cargo-action-fmt to use
+    required: false
+    default: v0.1.0
+
 runs:
   using: composite
   steps:
