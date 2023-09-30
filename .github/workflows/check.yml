@@ -22,12 +22,9 @@ env:
 
 jobs:
   general-checks:
-    name: General
+    name: General Checks
     runs-on: ubuntu-22.04
     steps:
-      - name: Setup | Install GitHub CI Annotations Formatter
-        uses: olix0r/cargo-action-fmt/setup@v2
-
       - name: Setup | Checkout code
         uses: actions/checkout@v4
 

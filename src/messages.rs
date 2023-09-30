@@ -45,12 +45,12 @@ impl CargoMessage {
           let re = regex::Regex::new(
             r"^(?<level>[a-z]*: )(?<message>.*)\n  --> .*\n(.*\n)*\s*= help: for further information visit (?<link>https://.*)",
           )?;
-          let msg = re.replace(&message.rendered, "$level[**$message**]($link)");
+          let msg = re.replace(&message.rendered, "$level$message ($link)");
 
           let re = regex::Regex::new(
             r"note: the (?<message>lint level is defined) here\n\s*--> (?<file>.*)\n(.*\n)*.*(?<lint>#!\[.*\])(.*\n)*",
           )?;
-          let msg = re.replace(&msg, "\nThe $message in $file by `$lint`");
+          let msg = re.replace(&msg, "\nThe $message in $file by $lint");
 
           for span in message.spans {
             println!(
