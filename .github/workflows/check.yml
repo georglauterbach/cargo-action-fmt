@@ -36,7 +36,7 @@ jobs:
 
       - name: Run checks
         run: |
-          cargo clippy --quiet --message-format=json | cargo-action-fmt || EXIT_STATUS=${?}
+          cargo clippy --quiet --message-format=json | cargo run || EXIT_STATUS=${?}
           cargo fmt --all --message-format=human -- --check || EXIT_STATUS=${?}
-          cargo doc --no-deps --message-format=json | cargo-action-fmt || EXIT_STATUS=${?}
+          cargo doc --no-deps --message-format=json | cargo run || EXIT_STATUS=${?}
           exit ${EXIT_STATUS}
